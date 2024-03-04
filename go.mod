@@ -1,4 +1,4 @@
-module github.com/gaghyta/desafio-Especializacion-Backend-Go
+module github.com/Gaghyta/desafio-Especializacion-Backend-Go
 
 go 1.22.0
 
