@@ -26,7 +26,7 @@ type Storage struct {
 	Tickets []Ticket
 }
 
-// GetTotalTickets devuelve la cantidad total de tickets para un destino específico.
+// GetTotalTickets devuelve, para un destino, la cantidad total de tickets
 func (s *Storage) GetTotalTickets(destination string) (int, error) {
 	totalTickets := 0
 
@@ -43,7 +43,7 @@ func (s *Storage) GetTotalTickets(destination string) (int, error) {
 	}
 }
 
-// Calcula cuantas personas viajan en madrugada tarde y noche
+// Calcula cuantas personas viajan en los turnos pedidos
 func (s *Storage) GetCountByPeriod(time string) (int, error) {
 
 	totalPersonas := 0
@@ -91,7 +91,7 @@ func (s *Storage) GetCountByPeriod(time string) (int, error) {
 
 }
 
-// Requirement 3 -> calcula el porcentaje por destino
+// Calcula el porcentaje por destino
 func (s *Storage) AverageDestination(destination string, Tickets *[]Ticket) (float64, error) {
 
 	var totalTickets float64
