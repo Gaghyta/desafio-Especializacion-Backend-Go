@@ -9,8 +9,8 @@ import (
 )
 
 var (
-	ErrNotFoundTicket = errors.New("Not found ticket for this destination")
-	ErrNotFoundTime   = errors.New("Not found Time")
+	errNotFoundTicket = errors.New("Not found ticket for this destination")
+	errNotFoundTime   = errors.New("Not found time")
 )
 
 type Ticket struct {
