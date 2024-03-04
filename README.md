@@ -12,7 +12,7 @@ desafío se puede resolver de múltiples maneras.
 
 # 1
 
-Requerimiento 1
+## Requerimiento 1
 Una función que calcule cuántas personas viajan a un país determinado.
 func GetTotalTickets(destination string) (int, error) {}
 (ejemplo 1)
@@ -20,7 +20,7 @@ func GetTotalTickets(destination string) (int, error) {}
 Tip: VS Code nos permite buscar una palabra en un archivo con Ctrl + F o ⌘ + F.
 
 
-# 2
+## 2
 
 Requerimiento 2:
 
@@ -32,7 +32,7 @@ func GetCountByPeriod(time string) (int, error) {}
 Tip: En Go, para manipular caracteres, tenemos el paquete strings.
 
 
-# 3
+##  3
 Requerimiento 3:
 Calcular el porcentaje de personas que viajan a un país determinado en un día.
 func PercentageDestination(destination string, total int) (float64, error) {}
@@ -45,7 +45,7 @@ n
 
 2
 
-# 4
+##  4
 Requerimiento 4:
 Ejecutar al menos una vez cada requerimiento en la función main. Las ejecuciones deben
 realizarse de manera concurrente (utilizando diferentes goroutines).
