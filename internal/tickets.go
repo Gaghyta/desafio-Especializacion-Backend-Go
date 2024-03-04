@@ -39,7 +39,7 @@ func (s *Storage) GetTotalTickets(destination string) (int, error) {
 	if totalTickets > 0 {
 		return totalTickets, nil
 	} else {
-		return 0, ErrNotFoundTicket
+		return 0, errNotFoundTicket
 	}
 }
 
@@ -59,22 +59,22 @@ func (s *Storage) GetCountByPeriod(time string) (int, error) {
 
 		switch {
 		case time == "madrugada":
-			if hora >= 0 && hora < 7 {
+			if hora >= 0 && hora < 6 {
 				totalPersonas++
 			}
 
 		case time == "mañana":
-			if hora >= 7 && hora < 13 {
+			if hora >= 7 && hora < 12 {
 				totalPersonas++
 			}
 
 		case time == "tarde":
-			if hora >= 13 && hora < 20 {
+			if hora >= 13 && hora < 19 {
 				totalPersonas++
 			}
 
 		case time == "noche":
-			if hora >= 20 && hora <= 24 {
+			if hora >= 20 && hora <= 23 {
 				totalPersonas++
 			}
 
@@ -86,7 +86,7 @@ func (s *Storage) GetCountByPeriod(time string) (int, error) {
 	if totalPersonas > 0 {
 		return totalPersonas, nil
 	} else {
-		return 0, ErrNotFoundTime
+		return 0, errNotFoundTime
 	}
 
 }
@@ -105,7 +105,7 @@ func (s *Storage) AverageDestination(destination string, Tickets *[]Ticket) (flo
 	}
 
 	if targetCountryTickets == 0 {
-		return 0.0, ErrNotFoundTicket
+		return 0.0, errNotFoundTicket
 	}
 
 	avg := (targetCountryTickets / totalTickets) * 100
