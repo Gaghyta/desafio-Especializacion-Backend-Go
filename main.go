@@ -39,7 +39,7 @@ func main() {
 		}
 	}()
 
-	//defino para tener la base de datos en memoria:
+	//Base de datos en memoria:
 	storageTickets := internal.Storage{
 		Tickets: ReadFile(filename),
 	}
@@ -57,7 +57,7 @@ func main() {
 	go func() {
 		defer wg.Done()
 		fmt.Println("Procesando gorutine 1")
-		// obtener el total
+		// Total
 		total, err := storageTickets.GetTotalTickets(destination)
 		if err != nil {
 			canalErr <- err
