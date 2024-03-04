@@ -16,17 +16,17 @@ const (
 )
 
 func main() {
-	// Crear canales para comunicarnos con las goroutines
+	// Canales de comunicacion con las goroutines
 	canalGetTotalTickets := make(chan int)
 	canalGetCountByPeriod := make(chan int)
 	canalPorcentaje := make(chan float64)
 
 	canalErr := make(chan error)
-	// creo la variable para las esperas de los go rutines
+	// Esperas de los go rutines
 	var wg sync.WaitGroup
 	wg.Add(3)
 
-	// Recuperamos los errores para no romper el programa
+	// Recover los errores
 	defer func() {
 		if err := recover(); err != nil {
 			log.Fatal(err)
@@ -53,11 +53,11 @@ func main() {
 	scanner.Scan()
 	period := scanner.Text()
 
-	// Goroutine para obtener el total de tickets por destino
+	// Goroutine Total de tickets x destino
 	go func() {
 		defer wg.Done()
 		fmt.Println("Procesando gorutine 1")
-		// obtener el total de tickets por destino/
+		// obtener el total
 		total, err := storageTickets.GetTotalTickets(destination)
 		if err != nil {
 			canalErr <- err
@@ -65,14 +65,15 @@ func main() {
 		}
 
 		canalGetTotalTickets <- total
+		// Imprimir
 		fmt.Println(" Terminando de Procesar gorutine 1")
 	}()
 
-	// Goroutine para obtener la cantidad de pasajeros por periodo
+	// Goroutine de pasajeros x periodo
 	go func() {
 		defer wg.Done()
 		fmt.Println("Procesando gorutine 2")
-		// obtener el total de tickets por destiperiodo
+
 		total, err := storageTickets.GetCountByPeriod(period)
 		if err != nil {
 			canalErr <- err
@@ -82,11 +83,11 @@ func main() {
 		fmt.Println(" Terminando de Procesar gorutine 2")
 	}()
 
-	// Goroutine para obtener porcentaje
+	// Goroutine del porcentaje
 	go func() {
 		defer wg.Done()
 		fmt.Println("Procesando gorutine 3")
-		// obtener el porcentaje
+		// obtener porcentaje
 		porcentaje, err := storageTickets.AverageDestination(destination, &storageTickets.Tickets)
 		if err != nil {
 			canalErr <- err
@@ -96,17 +97,17 @@ func main() {
 		fmt.Println(" Terminando de Procesar gorutine 3")
 	}()
 
-	// asigno a variables lo que traen los canales
+	// Variables
 	GetTotalTickets := <-canalGetTotalTickets
 	fmt.Printf("la cantidad de tickets para el destino %v es %v\n", destination, GetTotalTickets)
 	CountByPeriod := <-canalGetCountByPeriod
 	fmt.Printf("La canitdad de tickets para el periodo %v  es %v\n", period, CountByPeriod)
 	AverageDestination := <-canalPorcentaje
 	fmt.Printf("El porcentaje por destino es: %v\n", AverageDestination)
-	// espero a que todas la go rutines terminen
+	// Espera
 	wg.Wait()
 
-	// Cerrar los canales adecuadamente
+	// Cerramiento de canales
 	close(canalGetTotalTickets)
 	close(canalGetCountByPeriod)
 	close(canalPorcentaje)
@@ -144,5 +145,3 @@ func ReadFile(filename string) []internal.Ticket {
 	return resultado
 
 }
-
-//func main() {	total, err := tickets.GetTotalTickets("Brazil")}
