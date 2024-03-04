@@ -101,7 +101,7 @@ func main() {
 	GetTotalTickets := <-canalGetTotalTickets
 	fmt.Printf("la cantidad de tickets para el destino %v es %v\n", destination, GetTotalTickets)
 	CountByPeriod := <-canalGetCountByPeriod
-	fmt.Printf("La canitdad de tickets para el periodo %v  es %v\n", period, CountByPeriod)
+	fmt.Printf("La cantidad de tickets para el periodo %v  es %v\n", period, CountByPeriod)
 	AverageDestination := <-canalPorcentaje
 	fmt.Printf("El porcentaje por destino es: %v\n", AverageDestination)
 	// Espera
